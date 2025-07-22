@@ -11,9 +11,11 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ profile }) {
+       console.log('🧠 Google profile:', profile);
       return profile?.email === 'pttong89@gmail.com';
     },
     async session({ session }) {
+      console.log('✅ Session created:', session);
       return session;
     },
   },
