@@ -1,33 +1,41 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AmazonPopup from '@/components/AmazonPopup';
 import RelatedPostsPopup from '@/components/RelatedPostsPopup';
 
-export default function LayoutWrapper({ children }: { children: ReactNode }) {
-    const pathname = usePathname();
-    const safePath = pathname || '';
-    const excludedPaths = ['/gear', '/about', '/guides', '/info-national-park', '/', '/upload', '/listhtml'];
-    const [ready, setReady] = useState(false);
+export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const [showPopup, setShowPopup] = useState(false);
 
-    useEffect(() => {
-        setReady(true);
-    }, []);
-    const isPostPage =
-        /^[a-z0-9-]+$/.test(safePath.replace(/^\//, '')) &&  // kiểm tra path dạng slug
-        !excludedPaths.includes(safePath) &&
-        !safePath.startsWith('/topic');
+  useEffect(() => {
+    if (!pathname) return;
 
-    return (
+    const excludedPaths = [
+      '/', '/gear', '/about', '/guides', '/info-national-park', '/upload', '/listhtml'
+    ];
+
+    const cleanPath = pathname.toLowerCase();
+
+    const isPost =
+      /^[a-z0-9-]+$/.test(cleanPath.replace(/^\//, '')) && // chỉ dạng slug
+      !excludedPaths.includes(cleanPath) &&
+      !cleanPath.startsWith('/topic') &&
+      !cleanPath.startsWith('/goto');
+
+    setShowPopup(isPost);
+  }, [pathname]);
+
+  return (
+    <>
+      {children}
+      {showPopup && (
         <>
-            {children}
-            {ready && isPostPage && (
-                <>
-                    <AmazonPopup />
-                    <RelatedPostsPopup />
-                </>
-            )}
+          <AmazonPopup />
+          <RelatedPostsPopup />
         </>
-    );
+      )}
+    </>
+  );
 }
