@@ -17,6 +17,7 @@ export default function AmazonPopup() {
   const [isMinimized, setIsMinimized] = useState(false);
 
   useEffect(() => {
+    console.log('AmazonPopup mounted');
     const anchors = Array.from(document.querySelectorAll('a')) as HTMLAnchorElement[];
     const results: AmazonLink[] = [];
 
