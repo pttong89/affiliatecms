@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { exec } from 'child_process';
-import { getServerSession } from 'next-auth';
-import { authOptions  } from '@/pages/api/auth/[...nextauth]'; // import auth config
+//import { getServerSession } from 'next-auth';
+//import { authOptions  } from '@/pages/api/auth/[...nextauth]'; // import auth config
 import { logAction } from '@/lib/logger'; // helper tự viết
 export async function POST(req: NextRequest) {
     try {
@@ -29,8 +29,8 @@ export async function POST(req: NextRequest) {
             }
             console.log('✅ stdout:', stdout);
         });
-        const session = await getServerSession(authOptions);
-        const email = session?.user?.email || 'unknown';
+        //const session = await getServerSession(authOptions);
+        const email = ''; //session?.user?.email || 'unknown';
         logAction('📤 Upload', {
             user: email,
             ip: req.headers.get('x-forwarded-for') || 'unknown',

@@ -1,8 +1,7 @@
-// pages/api/auth/[...nextauth].ts
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-export const authOptions: NextAuthOptions = {
+export default NextAuth({
   debug: true,
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -21,7 +20,4 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-};
-
-// 👇 NextAuth cần export default
-export default NextAuth(authOptions);
+});
