@@ -4,7 +4,7 @@ import AmazonPopup from '@/components/AmazonPopup';
 import RelatedPostsPopup from '@/components/RelatedPostsPopup';
 import Link from 'next/link';
 import { useState } from 'react';
-import './globals.css'
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || '';
