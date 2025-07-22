@@ -118,10 +118,6 @@ export default function RedirectPage() {
             </div>
           )}
         </div>
-
-        <div className="mt-4 text-center text-sm text-gray-500">
-          Demo Next.js App Router: <code className="bg-gray-200 px-2 py-1 rounded">/goto/{id}</code>
-        </div>
       </div>
     </div>
   );
