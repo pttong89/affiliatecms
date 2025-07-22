@@ -33,8 +33,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(200).json({ success: true, filename });
     });
 
-  } catch (err) {
-    console.error('❌ Lỗi khi upload:', err);
-    return res.status(500).json({ success: false, error: 'Internal server error' });
-  }
+  }catch (err: any) {
+  console.error('❌ Lỗi khi upload:', err);
+  return res.status(500).json({ success: false, error: err?.message || 'Internal server error' });
+}
 }
