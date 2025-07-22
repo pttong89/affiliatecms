@@ -1,19 +1,10 @@
 'use client'
-import { usePathname } from 'next/navigation';
-import AmazonPopup from '@/components/AmazonPopup';
-import RelatedPostsPopup from '@/components/RelatedPostsPopup';
 import Link from 'next/link';
 import { useState } from 'react';
-
+import LayoutWrapper from '../components/LayoutWrapper';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname() || '';
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const isPostPage =
-    /^\/[a-z0-9-]+$/.test(pathname) &&
-    !['/gear', '/about', '/guides', '/info-national-park','/', '/upload','/listhtml'].includes(pathname) &&
-    !pathname.startsWith('/topic');
-
   return (
     <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* Responsive CSS */}
@@ -487,14 +478,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         minHeight: '80vh',
         background: 'linear-gradient(180deg, #f0f8ff 0%, #e6f3ff 100%)'
       }}>
-        {children}
-
-        {isPostPage && (
-          <>
-            <AmazonPopup />
-            <RelatedPostsPopup />
-          </>
-        )}
+         <LayoutWrapper>{children}</LayoutWrapper>
       </main>
 
       {/* Footer */}
