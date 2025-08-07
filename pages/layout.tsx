@@ -137,7 +137,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               🏔️
             </div>
             <div className="logo-text">
-              <h1 style={{
+              <div style={{
                 margin: 0,
                 fontSize: '26px',
                 fontWeight: 'bold',
@@ -146,7 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 lineHeight: '1.2'
               }}>
                 TrailGear Pro
-              </h1>
+              </div>
               <p style={{
                 margin: 0,
                 fontSize: '12px',
@@ -799,7 +799,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 display: 'flex',
                 gap: '20px'
               }}>
-                <Link href="#" style={{
+                <Link href="/privacy-policy" style={{
                   color: '#b0e0e6',
                   textDecoration: 'none',
                   fontSize: '14px',

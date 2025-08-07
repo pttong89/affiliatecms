@@ -32,8 +32,8 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       {children}
       {showPopup && (
         <>
-          <AmazonPopup />
-          <RelatedPostsPopup />
+          {/* //<AmazonPopup /> */}
+          {/* //<RelatedPostsPopup /> */}
         </>
       )}
     </>
