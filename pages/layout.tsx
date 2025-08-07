@@ -720,7 +720,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   alignItems: 'center',
                   gap: '8px'
                 }}>
-                  ✉️ info@trailgearpro.com
+                  ✉️ info@explorenationalparks.store
                 </p>
                 <p style={{
                   margin: '0 0 20px 0',
@@ -811,7 +811,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 }}>
                   Privacy Policy
                 </Link>
-                <Link href="#" style={{
+                <Link href="/Terms-of-Service" style={{
                   color: '#b0e0e6',
                   textDecoration: 'none',
                   fontSize: '14px',
@@ -823,7 +823,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 }}>
                   Terms of Service
                 </Link>
-                <Link href="#" style={{
+                <Link href="/Return-Policy" style={{
                   color: '#b0e0e6',
                   textDecoration: 'none',
                   fontSize: '14px',
@@ -834,6 +834,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   e.currentTarget.style.color = '#b0e0e6';
                 }}>
                   Return Policy
+                </Link>
+                <Link href="/affiliate-disclaimer" style={{
+                  color: '#b0e0e6',
+                  textDecoration: 'none',
+                  fontSize: '14px',
+                  transition: 'color 0.3s ease'
+                }} onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#87ceeb';
+                }} onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#b0e0e6';
+                }}>
+                  Affiliate Disclaimer
+                </Link>
+                <Link href="/contact" style={{
+                  color: '#b0e0e6',
+                  textDecoration: 'none',
+                  fontSize: '14px',
+                  transition: 'color 0.3s ease'
+                }} onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#87ceeb';
+                }} onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#b0e0e6';
+                }}>
+                  Contact US
                 </Link>
               </div>
             </div>
