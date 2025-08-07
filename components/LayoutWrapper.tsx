@@ -2,8 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import AmazonPopup from '@/components/AmazonPopup';
-import RelatedPostsPopup from '@/components/RelatedPostsPopup';
+// import AmazonPopup from '@/components/AmazonPopup';
+// import RelatedPostsPopup from '@/components/RelatedPostsPopup';
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
