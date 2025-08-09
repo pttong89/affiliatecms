@@ -1,7 +1,19 @@
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://explorenationalparks.store', // thay bằng domain của bạn
+  siteUrl: 'https://explorenationalparks.store',
   generateRobotsTxt: true,
-  sitemapSize: 200, // Tùy chọn, mặc định 5000 URL/sitemap
+  sitemapSize: 200,
   changefreq: 'daily',
   priority: 0.8,
+  robotsTxtOptions: {
+    additionalSitemaps: [
+      'https://explorenationalparks.store/sitemap.xml',
+    ],
+    policies: [
+      {
+        userAgent: '*',
+        allow: '/',
+      },
+    ],
+  },
 };
