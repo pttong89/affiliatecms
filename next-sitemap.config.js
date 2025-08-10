@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://explorenationalparks.store',
-  generateRobotsTxt: true,
+  generateRobotsTxt: false,
   sitemapSize: 200,
   changefreq: 'daily',
   priority: 0.8,
