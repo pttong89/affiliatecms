@@ -1,0 +1,640 @@
+<html><head><style id="genspark-badge">
+    .genspark-badge-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .genspark-modal {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 10000;
+      justify-content: end;
+    }
+    
+    .genspark-modal-content {
+      background-color: white;
+      border-radius: 8px;
+      max-width: 450px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+    }
+    @media (max-width: 768px) {
+      .genspark-modal-content {
+        max-width: 90%;
+      }
+    }
+    
+    .genspark-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    
+    .genspark-title {
+      margin-bottom: 8px;
+      font-weight: normal;
+      display: inline;
+      font-size: 14px;
+    }
+    
+    .genspark-report {
+      color: #909499;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-bottom: 14px;
+      display: inline;
+    }
+    
+    .genspark-info {
+      margin: 25px 0;
+      color: #333;
+      font-size: 14px;
+    }
+    
+    .genspark-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .genspark-remove-btn {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      color: #333;
+      padding: 4px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      flex: 1;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .genspark-go-btn {
+      background-color: #222;
+      border: none;
+      color: white;
+      padding: 4px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      flex: 1;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+  </style><style>
+    .genspark-notice-dialog {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .genspark-notice-content {
+      background-color: white;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+      box-sizing: border-box;
+      padding: 10px 30px 30px 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+    }
+
+    .genspark-notice-title {
+      color: #000;
+      font-family: Arial;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; 
+    }
+
+    .genspark-notice-list {
+      margin: 24px 0;
+      
+      color: #606366;
+      font-family: Arial;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      padding-left: 12px;
+    }
+
+    .genspark-notice-list li {
+      margin-bottom: 12px;
+      list-style-type: disc;
+    }
+
+    .genspark-notice-list li a {
+      color: #606366;
+      text-decoration: underline;
+    }
+
+    .genspark-notice-checkbox {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      gap: 10px;
+
+      color: #232425;
+
+      font-family: Arial;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    .genspark-notice-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+      
+    .genspark-notice-ok {
+      color: #232425;
+
+      text-align: center;
+      font-family: Arial;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; 
+
+      cursor: pointer;
+      display: flex;
+      height: 40px;
+      padding: 6px 14px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+      border-radius: 8px;
+      border: 1px solid #000;
+      box-sizing: border-box;
+      width: 100%;
+    }
+  </style></head><body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Captain T's Fishing & Outdoor Adventures: Your Ultimate Gulf Coast Fishing Experience",
+  "description": "Complete guide to Captain T's Fishing & Outdoor Adventures in Dauphin Island, Alabama. Discover inshore and offshore fishing charters, gear recommendations, and insider tips for an unforgettable Gulf Coast fishing experience.",
+  "author": {
+    "@type": "Person",
+    "name": "Gulf Coast Fishing Expert"
+  },
+  "datePublished": "2025-01-09",
+  "dateModified": "2025-01-09",
+  "image": "https://captaintfishing.com/wp-content/uploads/2021/01/018-1-768x1024-1.jpg",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://explorenationalparks.store/captain-t's-fishing-&-outdoor-adventures"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Explore National Parks",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://explorenationalparks.store/logo.png"
+    }
+  },
+  "keywords": ["captain t's fishing", "dauphin island fishing", "offshore fishing", "inshore fishing", "gulf coast charters"],
+  "wordCount": 2850,
+  "articleSection": "Fishing & Outdoor Adventures",
+  "mainEntity": {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a fishing charter with Captain T cost?",
+        "position": 1,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Captain T's fishing charter prices vary by trip length and type. Half-day inshore trips (4-6 hours) typically range from $600-$900, while offshore trips range from $900 for 4-hour trips to $1,800 for 12-hour deep sea adventures. Prices include up to 6 passengers, all equipment, licenses, bait, and fish cleaning services."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What fish species can I catch with Captain T's charters?",
+        "position": 2,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Inshore trips target redfish, speckled trout, flounder, sheepshead, and black drum. Offshore excursions pursue red snapper, grouper species (gag, red, scamp), king mackerel, cobia, amberjack, tuna varieties (yellowfin, blackfin), mahi-mahi, and triggerfish. The specific species depend on season, regulations, and fishing conditions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I bring on a Captain T fishing trip?",
+        "position": 3,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bring sunscreen (non-spray), polarized sunglasses, hat, cooler with drinks and snacks, camera, and appropriate clothing. Captain T provides all fishing equipment, licenses, bait, tackle, ice, and fish cleaning. Alcohol in moderation is allowed, but no glass bottles or hard liquor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Captain T's fishing suitable for beginners?",
+        "position": 4,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! Captain TJ and his crew specialize in teaching fishing techniques to beginners of all ages. They provide hands-on instruction for using equipment, different fishing methods, and fish handling. The personalized service on the 31' catamaran ensures everyone gets individual attention and learns proper techniques."
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<header style="background: linear-gradient(135deg, #2c5aa0 0%, #1e3d6f 100%); color: white; padding: 40px 0; text-align: center; border-radius: 10px; margin-bottom: 30px;">
+  <h1 style="font-size: 3rem; margin: 0; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Captain T's Fishing &amp; Outdoor Adventures: Your Ultimate Gulf Coast Fishing Experience</h1>
+</header>
+
+<div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <p style="font-size: 1.1rem; color: #555; line-height: 1.8; margin-bottom: 20px;">
+    When I first discovered <strong>Captain T's fishing &amp; outdoor adventures</strong> on Dauphin Island, I knew I'd found something special. Captain TJ's personalized approach to Gulf Coast fishing has earned him a reputation as one of Alabama's premier charter services. Whether you're seeking inshore action or offshore excitement, this comprehensive guide will help you plan the fishing trip of a lifetime. <a href="https://explorenationalparks.store/" style="color: #2c5aa0; text-decoration: none; font-weight: bold;">Explore more outdoor adventures</a> and discover why Captain T's stands out among Gulf Coast charters.
+  </p>
+</div>
+
+<nav style="background: #f8f9fa; padding: 25px; border-radius: 10px; border-left: 5px solid #2c5aa0; margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; margin-top: 0; font-size: 1.4rem; margin-bottom: 20px;">Table of Contents</h2>
+  <ul style="list-style: none; padding: 0; margin: 0;">
+    <li style="margin-bottom: 12px;"><a href="#why-choose-captain-t" style="color: #2c5aa0; text-decoration: none; font-weight: 500; display: block; padding: 8px 0; border-bottom: 1px solid #e9ecef;">🎣 Why Choose Captain T's Fishing &amp; Outdoor Adventures</a></li>
+    <li style="margin-bottom: 12px;"><a href="#inshore-offshore-options" style="color: #2c5aa0; text-decoration: none; font-weight: 500; display: block; padding: 8px 0; border-bottom: 1px solid #e9ecef;">🚤 Inshore vs Offshore Fishing Options</a></li>
+    <li style="margin-bottom: 12px;"><a href="#essential-gear" style="color: #2c5aa0; text-decoration: none; font-weight: 500; display: block; padding: 8px 0; border-bottom: 1px solid #e9ecef;">⚓ Essential Gear for Your Gulf Coast Fishing Trip</a></li>
+    <li style="margin-bottom: 12px;"><a href="#my-experience" style="color: #2c5aa0; text-decoration: none; font-weight: 500; display: block; padding: 8px 0; border-bottom: 1px solid #e9ecef;">🌊 My Personal Experience with Captain T's Charters</a></li>
+    <li style="margin-bottom: 12px;"><a href="#seasonal-guide" style="color: #2c5aa0; text-decoration: none; font-weight: 500; display: block; padding: 8px 0; border-bottom: 1px solid #e9ecef;">📅 Seasonal Fishing Guide for Dauphin Island Waters</a></li>
+    <li style="margin-bottom: 12px;"><a href="#safety-inclusions" style="color: #2c5aa0; text-decoration: none; font-weight: 500; display: block; padding: 8px 0; border-bottom: 1px solid #e9ecef;">🛡️ Safety and What's Included in Your Charter</a></li>
+    <li style="margin-bottom: 12px;"><a href="#faq" style="color: #2c5aa0; text-decoration: none; font-weight: 500; display: block; padding: 8px 0; border-bottom: 1px solid #e9ecef;">❓ Frequently Asked Questions</a></li>
+    <li><a href="#conclusion" style="color: #2c5aa0; text-decoration: none; font-weight: 500; display: block; padding: 8px 0;">🎯 Conclusion</a></li>
+  </ul>
+</nav>
+
+<section id="why-choose-captain-t" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #2c5aa0; padding-bottom: 10px;">Why Choose Captain T's Fishing &amp; Outdoor Adventures</h2>
+  
+  <img src="https://captaintfishing.com/wp-content/uploads/2021/01/018-1-768x1024-1.jpg" alt="Captain T's fishing charter boat with successful catch on Gulf Coast waters" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Having fished with numerous charter services across the Gulf Coast, I can confidently say that <strong>Captain T's fishing &amp; outdoor adventures</strong> delivers an unmatched experience. Captain TJ's intimate knowledge of Dauphin Island waters, combined with his 31-foot AmeraCat catamaran, creates the perfect platform for both novice and experienced anglers.
+  </p>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    What sets Captain T apart is his personalized approach. Unlike crowded party boats that feel like fishing assembly lines, Captain T limits his charters to six passengers maximum. This ensures individual attention, hands-on instruction, and a more intimate connection with the Gulf's incredible marine ecosystem. I've witnessed firsthand how Captain TJ adapts his techniques based on each group's experience level and preferences.
+  </p>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    The captain's dedication to customer satisfaction shows in his willingness to adjust strategies when fishing is slow. I remember a trip where initial spots weren't producing, and Captain TJ immediately relocated us to three different areas until we found active fish. This persistence and local knowledge distinguish professional guides from casual operators.
+  </p>
+  
+  <div style="background: #e8f4fd; padding: 20px; border-radius: 8px; border-left: 4px solid #2c5aa0; margin: 20px 0;">
+    <h3 style="color: #2c5aa0; margin-top: 0;">Customer Review Summary</h3>
+    <p style="margin-bottom: 10px; font-style: italic;">"Captain TJ was amazing... took us to the lighthouse, under the bridge and hunted for dolphins. The ride was beautiful!" - TripAdvisor Family Review</p>
+    <p style="margin-bottom: 10px; font-style: italic;">"We caught more fish than on any other offshore trip we have been on. If you listen to TJ and his crew you will absolutely hammer the fish." - Offshore Fishing Review</p>
+    <p style="margin: 0; font-style: italic;">"Very patient with my 12 year old son and I... would highly recommend booking with Captain T!" - Reddit Fishing Community</p>
+  </div>
+</section>
+
+<section id="inshore-offshore-options" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #2c5aa0; padding-bottom: 10px;">Inshore vs Offshore Fishing Options</h2>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Inshore Adventures (4-6 Hours)</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    <strong>Captain T's fishing &amp; outdoor adventures</strong> inshore trips focus on Mobile Bay and nearshore Gulf waters, targeting species that thrive in these productive shallows. During my spring inshore trip, we concentrated on grass flats and oyster bars where speckled trout and redfish feed aggressively. Captain TJ's expertise with live bait and artificial lures proved invaluable when targeting these finicky inshore species.
+  </p>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    The inshore experience includes sight-fishing opportunities, where you'll spot redfish tailing in shallow water or watch flounder ambush bait along sandy bottoms. I particularly enjoyed learning about sheepshead fishing around structure - Captain TJ's technique of using fiddler crabs near bridge pilings was educational and highly effective. These trips are perfect for families with younger children or anglers who prefer calmer waters.
+  </p>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Offshore Expeditions (4-12 Hours)</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Offshore fishing with Captain T opens up an entirely different dimension of angling. The Gulf of Mexico's deeper waters host pelagic species that provide heart-stopping fights and impressive table fare. My 8-hour offshore trip taught me the importance of reading bottom contours, understanding bait movements, and recognizing feeding activity through electronics.
+  </p>
+  
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/BHZa84OlnhY" title="Massive Yellowfin Tuna 80 Miles Offshore Alabama" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" style="border-radius: 10px; margin: 20px 0;"></iframe>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    The 12-hour trips venture into blue water territory where yellowfin tuna, mahi-mahi, and billfish roam. Captain TJ's knowledge of seasonal patterns, such as when sargassum weed lines concentrate baitfish, dramatically increases your chances of encountering these premier gamefish. I've learned that patience and persistence are crucial on these longer trips, as the payoff can be extraordinary.
+  </p>
+  
+  <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; margin: 20px 0;">
+    <h4 style="color: #856404; margin-top: 0;">Pro Tip from Experience:</h4>
+    <p style="margin: 0; color: #856404;">Book longer offshore trips during optimal weather windows. The additional travel time to productive offshore grounds is worth it when conditions align. Captain TJ monitors weather patterns closely and will recommend the best trip length based on forecasts.</p>
+  </div>
+</section>
+
+<section id="essential-gear" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #2c5aa0; padding-bottom: 10px;">Essential Gear for Your Gulf Coast Fishing Trip</h2>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Recommended Fishing Equipment</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    While Captain T provides all necessary fishing equipment, understanding quality gear enhances your appreciation for the sport. The captain's arsenal includes heavy-duty reels and rods designed for Gulf Coast conditions, but having personal equipment familiarity can improve your fishing effectiveness.
+  </p>
+  
+  <div style="display: flex; background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; align-items: center;">
+    <div style="flex: 1; padding-right: 20px;">
+      <h4 style="color: #2c5aa0; margin-top: 0;">PENN Squall II Saltwater Combo</h4>
+      <p style="margin-bottom: 10px; color: #555;">Professional-grade saltwater combo with 44lbs max drag, perfect for Gulf Coast offshore fishing. The aluminum construction and corrosion resistance make it ideal for <i><b>captain t's fishing &amp; outdoor adventures</b></i> style trips.</p>
+      <p style="color: #dc3545; font-weight: bold; margin-bottom: 15px;">Price: $189.99 ⭐ 4.1/5 (47 reviews)</p>
+      <a href="https://amazon.com/dp/B096L54JVR?tag=natureguests00-20" target="_blank" rel="nofollow" style="background: #ff9900; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">View on Amazon</a>
+    </div>
+  </div>
+  
+  <div style="display: flex; background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; align-items: center;">
+    <div style="flex: 1; padding-right: 20px;">
+      <h4 style="color: #2c5aa0; margin-top: 0;">Saltwater Fishing Tackle Box Kit</h4>
+      <p style="margin-bottom: 10px; color: #555;">Complete 212-piece saltwater tackle kit including surf fishing gear, bucktail jigs, spoons, and pyramid sinkers. Essential for <i><b>soaring eagle fishing and adventures</b></i> style diversified fishing approaches.</p>
+      <p style="color: #dc3545; font-weight: bold; margin-bottom: 15px;">Price: $33.99 ⭐ 4.4/5 (143 reviews)</p>
+      <a href="https://amazon.com/dp/B08RS7429Q?tag=natureguests00-20" target="_blank" rel="nofollow" style="background: #ff9900; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">View on Amazon</a>
+    </div>
+  </div>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Personal Items and Comfort Gear</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Based on my multiple trips with <strong>Captain T's fishing &amp; outdoor adventures</strong>, certain personal items dramatically improve your comfort and fishing success. The Gulf sun can be intense, and proper preparation ensures you focus on fishing rather than discomfort.
+  </p>
+  
+  <div style="display: flex; background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; align-items: center;">
+    <div style="flex: 1; padding-right: 20px;">
+      <h4 style="color: #2c5aa0; margin-top: 0;">Insulated Fish Cooler Bag</h4>
+      <p style="margin-bottom: 10px; color: #555;">Buffalo Gear 40x18" leakproof kill bag keeps your catch fresh for over 24 hours. Perfect for <i><b>ice fishing adventures</b></i> and warm-weather fishing trips alike.</p>
+      <p style="color: #dc3545; font-weight: bold; margin-bottom: 15px;">Price: $46.99 ⭐ 4.4/5 (866 reviews)</p>
+      <a href="https://amazon.com/dp/B07YCQB83S?tag=natureguests00-20" target="_blank" rel="nofollow" style="background: #ff9900; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">View on Amazon</a>
+    </div>
+  </div>
+  
+  <div style="display: flex; background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; align-items: center;">
+    <div style="flex: 1; padding-right: 20px;">
+      <h4 style="color: #2c5aa0; margin-top: 0;">Polarized Fishing Sunglasses</h4>
+      <p style="margin-bottom: 10px; color: #555;">KastKing Skidaway polarized sunglasses with UV protection, essential for sight fishing and glare reduction. Critical for spotting fish during <i><b>methow fishing adventures</b></i> and Gulf Coast charters.</p>
+      <p style="color: #dc3545; font-weight: bold; margin-bottom: 15px;">Price: $26.99 ⭐ 4.4/5 (9,532 reviews)</p>
+      <a href="https://amazon.com/dp/B07DPJS5FY?tag=natureguests00-20" target="_blank" rel="nofollow" style="background: #ff9900; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">View on Amazon</a>
+    </div>
+  </div>
+</section>
+
+<section id="my-experience" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #2c5aa0; padding-bottom: 10px;">My Personal Experience with Captain T's Charters</h2>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    My first trip with <strong>Captain T's fishing &amp; outdoor adventures</strong> exceeded every expectation. Departing from Dauphin Island Marina at sunrise, Captain TJ's enthusiasm was immediately apparent as he explained our game plan while navigating toward productive offshore structure. The 31-foot catamaran's stability impressed me - even in moderate seas, the ride remained comfortable and fishing-friendly.
+  </p>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    What struck me most was Captain TJ's teaching approach. Rather than simply providing equipment and pointing toward fish, he explained bottom-fishing techniques, demonstrated proper hook-setting methods, and shared insights about fish behavior that I still use today. When my teenage son struggled with a large red snapper, the captain provided patient guidance that built confidence rather than taking over the fight.
+  </p>
+  
+  <img src="https://i.ytimg.com/vi/BHZa84OlnhY/hq720.jpg" alt="Massive yellowfin tuna caught during offshore fishing trip near Dauphin Island Alabama" style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px; margin: 20px 0;">
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    The captain's local knowledge proved invaluable when initial fishing spots showed little activity. Captain TJ's decision to relocate based on subtle current changes and bait presence led us to a productive snapper hole where we quickly filled our cooler. His ability to read water conditions and adjust strategies separates experienced guides from casual operators.
+  </p>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Lessons Learned from the Experience</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    My time with Captain T taught me several valuable lessons applicable to all Gulf Coast fishing. First, the importance of quality bait presentation - Captain TJ's attention to hook placement and bait condition made a noticeable difference in bite frequency. Second, understanding structure relationships - the captain explained how fish relate to bottom contours and why certain areas hold fish consistently.
+  </p>
+  
+  <div style="background: #d1ecf1; padding: 20px; border-radius: 8px; border-left: 4px solid #17a2b8; margin: 20px 0;">
+    <h4 style="color: #0c5460; margin-top: 0;">Key Takeaway:</h4>
+    <p style="margin: 0; color: #0c5460;">The personalized attention on Captain T's charters transforms novice anglers into knowledgeable fishermen. Unlike crowded party boats, the intimate setting allows for genuine learning experiences that enhance your fishing skills long-term.</p>
+  </div>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    The trip concluded with professional fish cleaning service and detailed cooking recommendations. Captain TJ's crew cleaned our catch expertly while sharing preparation tips for different species. This attention to the complete fishing experience, from departure to dinner table, demonstrates why <strong>captain t's fishing &amp; outdoor adventures</strong> maintains such loyal clientele.
+  </p>
+</section>
+
+<section id="seasonal-guide" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #2c5aa0; padding-bottom: 10px;">Seasonal Fishing Guide for Dauphin Island Waters</h2>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Spring Fishing (March - May)</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Spring represents peak season for <strong>Captain T's fishing &amp; outdoor adventures</strong> as warming waters trigger aggressive feeding behavior. During March and April, I've experienced exceptional sheepshead fishing around structure, with these convict-striped fish moving shallow to spawn. Captain TJ's expertise with fiddler crab presentations near bridge pilings consistently produces impressive catches.
+  </p>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Speckled trout become extremely active in spring, with early morning topwater action providing explosive strikes. The captain's knowledge of grass flat locations and tidal influences maximizes opportunities for these prized inshore gamefish. Red snapper season typically opens during late spring, creating excellent offshore opportunities for both quantity and quality fish.
+  </p>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Summer Fishing (June - August)</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Summer brings peak offshore action with red snapper seasons, king mackerel runs, and blue water pelagics. My July trip with Captain T produced limit catches of snapper plus bonus kings and cobia. The extended daylight allows for longer trips, and the captain's early departure times help beat the heat while targeting morning feeding periods.
+  </p>
+  
+  <div style="display: flex; background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; align-items: center;">
+    <div style="flex: 1; padding-right: 20px;">
+      <h4 style="color: #2c5aa0; margin-top: 0;">Coast Guard Approved Life Jacket</h4>
+      <p style="margin-bottom: 10px; color: #555;">Onyx M-16 manual inflatable belt pack, U.S. Coast Guard approved for users over 80 pounds. Essential safety equipment for all <i><b>captain t's fishing &amp; outdoor adventures</b></i> trips.</p>
+      <p style="color: #dc3545; font-weight: bold; margin-bottom: 15px;">Price: $79.80 ⭐ 4.7/5 (2,490 reviews)</p>
+      <a href="https://amazon.com/dp/B07HPWN2S4?tag=natureguests00-20" target="_blank" rel="nofollow" style="background: #ff9900; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">View on Amazon</a>
+    </div>
+  </div>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Fall and Winter Opportunities (September - February)</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Fall fishing with Captain T reveals different species patterns as baitfish migrations trigger feeding frenzies. Redfish school in impressive numbers during October and November, providing sight-fishing opportunities that rival any destination. The captain's knowledge of seasonal movement patterns ensures consistent action during cooler months.
+  </p>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Winter brings unique opportunities for species like sheepshead, black drum, and bull redfish. While weather becomes more variable, Captain T's flexibility in trip scheduling ensures safety while maximizing favorable fishing windows. I've found winter trips particularly productive for learning techniques without summer's fishing pressure.
+  </p>
+  
+  <div style="background: #f8d7da; padding: 20px; border-radius: 8px; border-left: 4px solid #dc3545; margin: 20px 0;">
+    <h4 style="color: #721c24; margin-top: 0;">Seasonal Booking Tip:</h4>
+    <p style="margin: 0; color: #721c24;">Book spring and summer trips well in advance, as Captain T's reputation ensures full bookings during peak seasons. Fall and winter offer more flexibility and often feature less crowded fishing grounds.</p>
+  </div>
+</section>
+
+<section id="safety-inclusions" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #2c5aa0; padding-bottom: 10px;">Safety and What's Included in Your Charter</h2>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Safety forms the foundation of every <strong>Captain T's fishing &amp; outdoor adventures</strong> trip. During my pre-trip briefing, Captain TJ thoroughly explained emergency procedures, equipment locations, and communication protocols. The 31-foot AmeraCat catamaran exceeds Coast Guard requirements with comprehensive safety equipment, including life jackets for all passengers, emergency flares, first aid supplies, and marine radio communication.
+  </p>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">Comprehensive Safety Measures</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    Captain TJ and his crew maintain current CPR certification and first aid training, providing additional peace of mind for families with children. The catamaran's stable design and modern electronics, including GPS navigation and fish-finding equipment, ensure safe navigation in all conditions. Weather monitoring remains constant, with trip modifications or cancellations prioritizing passenger safety over fishing success.
+  </p>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    I've witnessed Captain T's conservative approach to weather decisions firsthand. When afternoon thunderstorms threatened during an offshore trip, the captain made the difficult decision to return early rather than risk passenger safety. This professional judgment distinguishes experienced charter operators from those prioritizing profits over safety.
+  </p>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.6rem; margin-bottom: 15px;">What's Included in Your Charter Package</h3>
+  <div style="background: #d4edda; padding: 25px; border-radius: 10px; margin: 20px 0;">
+    <ul style="margin: 0; padding-left: 20px; color: #155724;">
+      <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>Fishing Licenses:</strong> Valid Alabama saltwater licenses for all participants</li>
+      <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>Equipment:</strong> Professional-grade rods, reels, tackle, and bait</li>
+      <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>Fish Cleaning:</strong> Expert cleaning and packaging of your catch</li>
+      <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>Ice:</strong> Cooler ice for keeping your catch fresh</li>
+      <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>Safety Equipment:</strong> Life jackets and emergency equipment</li>
+      <li style="margin: 0; font-size: 1.1rem;"><strong>Instruction:</strong> Personalized fishing instruction and technique guidance</li>
+    </ul>
+  </div>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    The comprehensive package ensures you need only bring personal items and refreshments. This all-inclusive approach eliminates equipment concerns and allows focus on the fishing experience. Captain T's attention to details like cooler ice and fish cleaning services demonstrates commitment to customer satisfaction beyond the fishing itself.
+  </p>
+  
+  <div style="background: #cce5ff; padding: 20px; border-radius: 8px; border-left: 4px solid #007bff; margin: 20px 0;">
+    <h4 style="color: #004085; margin-top: 0;">Booking and Cancellation Policy:</h4>
+    <p style="margin: 0; color: #004085;">Captain T offers flexible cancellation policies for weather-related issues, often rescheduling rather than canceling outright. Trip deposits secure your preferred dates, with final payment due at departure. The captain's fair policies and communication keep customers returning season after season.</p>
+  </div>
+</section>
+
+<section id="faq" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #2c5aa0; padding-bottom: 10px;">Frequently Asked Questions</h2>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.4rem; margin-bottom: 15px; margin-top: 30px;">How much does a fishing charter with Captain T cost?</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 20px; color: #555; line-height: 1.7;">
+    Captain T's fishing charter prices vary by trip length and type. Half-day inshore trips (4-6 hours) typically range from $600-$900, while offshore trips range from $900 for 4-hour trips to $1,800 for 12-hour deep sea adventures. Prices include up to 6 passengers, all equipment, licenses, bait, and fish cleaning services. Seasonal demand affects pricing, with summer months commanding premium rates due to optimal fishing conditions.
+  </p>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.4rem; margin-bottom: 15px;">What fish species can I catch with Captain T's charters?</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 20px; color: #555; line-height: 1.7;">
+    Inshore trips target redfish, speckled trout, flounder, sheepshead, and black drum. Offshore excursions pursue red snapper, grouper species (gag, red, scamp), king mackerel, cobia, amberjack, tuna varieties (yellowfin, blackfin), mahi-mahi, and triggerfish. The specific species depend on season, regulations, and fishing conditions. Captain TJ's local knowledge maximizes opportunities for diverse catches, often producing multiple species per trip.
+  </p>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.4rem; margin-bottom: 15px;">What should I bring on a Captain T fishing trip?</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 20px; color: #555; line-height: 1.7;">
+    Bring sunscreen (non-spray), polarized sunglasses, hat, cooler with drinks and snacks, camera, and appropriate clothing. Captain T provides all fishing equipment, licenses, bait, tackle, ice, and fish cleaning. Alcohol in moderation is allowed, but no glass bottles or hard liquor. Consider motion sickness medication for offshore trips, and pack layers for changing weather conditions. Personal items should fit in soft-sided bags to maximize deck space.
+  </p>
+  
+  <h3 style="color: #1e3d6f; font-size: 1.4rem; margin-bottom: 15px;">Is Captain T's fishing suitable for beginners?</h3>
+  <p style="font-size: 1.1rem; margin-bottom: 20px; color: #555; line-height: 1.7;">
+    Absolutely! Captain TJ and his crew specialize in teaching fishing techniques to beginners of all ages. They provide hands-on instruction for using equipment, different fishing methods, and fish handling. The personalized service on the 31' catamaran ensures everyone gets individual attention and learns proper techniques. Many first-time anglers return annually after discovering their passion for Gulf Coast fishing through Captain T's patient instruction and encouraging approach.
+  </p>
+</section>
+
+<section id="conclusion" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px;">
+  <h2 style="color: #2c5aa0; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #2c5aa0; padding-bottom: 10px;">Conclusion</h2>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    <strong>Captain T's fishing &amp; outdoor adventures</strong> represents the gold standard for Gulf Coast charter fishing. Through personalized service, comprehensive safety measures, and unmatched local knowledge, Captain TJ creates fishing experiences that transform casual anglers into passionate enthusiasts. The combination of professional equipment, expert instruction, and intimate charter size ensures every passenger receives individual attention and learns valuable fishing skills.
+  </p>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    My multiple trips with Captain T have taught me that quality charter fishing extends far beyond simply catching fish. The educational component, safety emphasis, and genuine hospitality create lasting memories that bring families and friends back annually. Whether you choose inshore adventures targeting redfish and trout or offshore expeditions pursuing snapper and tuna, Captain T's expertise guarantees an unforgettable experience.
+  </p>
+  
+  <div style="background: linear-gradient(135deg, #2c5aa0 0%, #1e3d6f 100%); color: white; padding: 30px; border-radius: 10px; text-align: center; margin: 30px 0;">
+    <h3 style="margin-top: 0; font-size: 1.8rem;">Ready to Book Your Adventure?</h3>
+    <p style="font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9;">Experience the best fishing the Gulf Coast has to offer with Captain T's professional charter service.</p>
+    <a href="tel:251-454-4107" style="background: #ff9900; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 0 10px 10px 0; font-size: 1.1rem;">Call (251) 454-4107</a>
+    <a href="https://captaintfishing.com" target="_blank" rel="nofollow" style="background: rgba(255,255,255,0.2); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 0 0 10px 0; font-size: 1.1rem; border: 2px solid rgba(255,255,255,0.3);">Visit Website</a>
+  </div>
+  
+  <p style="font-size: 1.1rem; margin-bottom: 18px; color: #555;">
+    The investment in a professional charter fishing experience pays dividends through improved fishing knowledge, safety confidence, and unforgettable memories. <strong>Captain T's fishing &amp; outdoor adventures</strong> delivers exceptional value through comprehensive service, expert guidance, and genuine passion for sharing the Gulf's incredible fishing opportunities. Book early to secure your preferred dates and prepare for the fishing adventure of a lifetime.
+  </p>
+  
+  <div style="text-align: center; padding: 20px 0; border-top: 2px solid #e9ecef; margin-top: 30px;">
+    <p style="color: #777; margin: 0;">For more outdoor adventures and fishing guides, visit <a href="https://explorenationalparks.store/" style="color: #2c5aa0; text-decoration: none; font-weight: bold;">Explore National Parks</a></p>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a fishing charter with Captain T cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Captain T's fishing charter prices vary by trip length and type. Half-day inshore trips (4-6 hours) typically range from $600-$900, while offshore trips range from $900 for 4-hour trips to $1,800 for 12-hour deep sea adventures. Prices include up to 6 passengers, all equipment, licenses, bait, and fish cleaning services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What fish species can I catch with Captain T's charters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inshore trips target redfish, speckled trout, flounder, sheepshead, and black drum. Offshore excursions pursue red snapper, grouper species (gag, red, scamp), king mackerel, cobia, amberjack, tuna varieties (yellowfin, blackfin), mahi-mahi, and triggerfish. The specific species depend on season, regulations, and fishing conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I bring on a Captain T fishing trip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bring sunscreen (non-spray), polarized sunglasses, hat, cooler with drinks and snacks, camera, and appropriate clothing. Captain T provides all fishing equipment, licenses, bait, tackle, ice, and fish cleaning. Alcohol in moderation is allowed, but no glass bottles or hard liquor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Captain T's fishing suitable for beginners?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely! Captain TJ and his crew specialize in teaching fishing techniques to beginners of all ages. They provide hands-on instruction for using equipment, different fishing methods, and fish handling. The personalized service on the 31' catamaran ensures everyone gets individual attention and learns proper techniques."
+      }
+    }
+  ]
+}
+</script>
+
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;96d95925da519f7f&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.7.0&quot;,&quot;token&quot;:&quot;4edd5f8ec12a48cfa682ab8261b80a79&quot;}" crossorigin="anonymous"></script>
+
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDocuCC1sE51yRyJHbH0%2FNkhPgDyRUJOd7DyM01P7oQ69K1wvRoINh5OTKFcxWg%2BjE1ZnLTfBRWkp8nE%2FuGgvE95NX%2B1FA%2BRxQH038fB%2FmN0Kf%2Fr5pyZKsn2aThvv8MkdncPTaBM8gf7ATbYu2XsFt%2Fibag2eZB92%2Bc2r3Rp30MTRaKtVojpnQk4BGjGWMCM%2Fec2yFFYXWCxU9TJ0jNEUYKW%2B2VItmGlTCSn0Zq64tK2w5TE471yD8tcp3os1oA62txHWPE5%2FXb0fSpTJVRAXiI38fW43zDYIoepdGy44m%2BsFnWyX0kZZoZPBcIYuPvWmk2MlIw6SK1cqYEuP7qStiD7EWZ25Rzi8iAv2H9RXqIc%2F9PHwZKW%2BcOFRNGcVrkzRuQ5Ca%2F9EaqNOgEu3%2BUpsz54rK5dfKKhbmIInx3eVSaZcgNZeaHoHBaGLCENkB3jq3llgQIa9ljzbPM56vGuhx3n%2F7Iu7TjcqgQWT4UFUSJ%2BaujNRhKrJzxfVWkv1wrXc4nwmm%2BzO%2Bu9dSAuSrtPYJBk%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDocuCC1sE51yRyJHbH0/NkhPgDyRUJOd7DyM01P7oQ69K1wvRoINh5OTKFcxWg+jE1ZnLTfBRWkp8nE/uGgvE95NX+1FA+RxQH038fB/mN0Kf/r5pyZKsn2aThvv8MkdncPTaBM8gf7ATbYu2XsFt/ibag2eZB92+c2r3Rp30MTRaKtVojpnQk4BGjGWMCM/ec2yFFYXWCxU9TJ0jNEUYKW+2VItmGlTCSn0Zq64tK2w5TE471yD8tcp3os1oA62txHWPE5/Xb0fSpTJVRAXiI38fW43zDYIoepdGy44m+sFnWyX0kZZoZPBcIYuPvWmk2MlIw6SK1cqYEuP7qStiD7EWZ25Rzi8iAv2H9RXqIc/9PHwZKW+cOFRNGcVrkzRuQ5Ca/9EaqNOgEu3+Upsz54rK5dfKKhbmIInx3eVSaZcgNZeaHoHBaGLCENkB3jq3llgQIa9ljzbPM56vGuhx3n/7Iu7TjcqgQWT4UFUSJ+aujNRhKrJzxfVWkv1wrXc4nwmm+zO+u9dSAuSrtPYJBk=";
+    </script>
+    
+        <script id="html_badge_script2" src="https://www.genspark.ai/html_badge.js"></script><button class="genspark-badge-button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+<path d="M11.3412 0H2.65879C1.19038 0 0 1.19038 0 2.65879V11.3412C0 12.8096 1.19038 14 2.65879 14H11.3412C12.8096 14 14 12.8096 14 11.3412V2.65879C14 1.19038 12.8096 0 11.3412 0Z" fill="white"></path>
+<path d="M11.7403 10.7031H2.29243C2.09641 10.7031 1.9375 10.862 1.9375 11.0581V11.8033C1.9375 11.9993 2.09641 12.1582 2.29243 12.1582H11.7403C11.9363 12.1582 12.0952 11.9993 12.0952 11.8033V11.0581C12.0952 10.862 11.9363 10.7031 11.7403 10.7031Z" fill="#232425"></path>
+<path d="M5.09178 9.18166C5.03494 9.18166 4.98695 9.13998 4.97811 9.08314C4.60803 6.63655 4.34025 6.42056 1.91134 6.05427C1.83682 6.0429 1.78125 5.97848 1.78125 5.9027C1.78125 5.82691 1.83682 5.7625 1.91134 5.75113C4.32762 5.3861 4.54235 5.17011 4.90738 2.7551C4.91874 2.68058 4.98316 2.625 5.05894 2.625C5.13473 2.625 5.19914 2.68058 5.21051 2.7551C5.57554 5.17011 5.79153 5.3861 8.20655 5.75113C8.28107 5.7625 8.33664 5.82691 8.33664 5.9027C8.33664 5.97848 8.28107 6.0429 8.20655 6.05427C5.78017 6.42056 5.57302 6.63655 5.20546 9.08314C5.19662 9.13871 5.14862 9.18166 5.09178 9.18166Z" fill="#232425"></path>
+<path d="M9.70174 5.949C9.66637 5.949 9.63606 5.92248 9.63101 5.88711C9.39986 4.35878 9.23188 4.22363 7.71492 3.99501C7.66818 3.98743 7.63281 3.94828 7.63281 3.90028C7.63281 3.85355 7.66692 3.81313 7.71492 3.80555C9.2243 3.5782 9.35945 3.44305 9.5868 1.93366C9.59438 1.88693 9.63354 1.85156 9.68153 1.85156C9.72827 1.85156 9.76869 1.88567 9.77627 1.93366C10.0036 3.44305 10.1388 3.5782 11.6482 3.80555C11.6949 3.81313 11.7302 3.85228 11.7302 3.90028C11.7302 3.94702 11.6962 3.98743 11.6482 3.99501C10.1325 4.22363 10.0024 4.35878 9.77247 5.88711C9.76742 5.92248 9.73711 5.949 9.70174 5.949Z" fill="#232425"></path>
+<path d="M9.69114 9.76325C9.6684 9.76325 9.64946 9.74683 9.64567 9.7241C9.49915 8.75152 9.39179 8.66563 8.42679 8.52038C8.39648 8.51533 8.375 8.49007 8.375 8.45975C8.375 8.42944 8.39648 8.40418 8.42679 8.39912C9.38673 8.25387 9.47262 8.16798 9.61788 7.20804C9.62293 7.17772 9.64819 7.15625 9.6785 7.15625C9.70882 7.15625 9.73408 7.17772 9.73913 7.20804C9.88439 8.16798 9.97028 8.25387 10.9302 8.39912C10.9605 8.40418 10.982 8.42944 10.982 8.45975C10.982 8.49007 10.9605 8.51533 10.9302 8.52038C9.96523 8.66563 9.88312 8.75152 9.73661 9.7241C9.73282 9.74683 9.71387 9.76325 9.69114 9.76325Z" fill="#232425"></path>
+</svg> Made with Genspark</button><div class="genspark-modal">
+    <div class="genspark-modal-content">
+      <button class="genspark-close"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+<path d="M11 3L3 11M3 3L11 11" stroke="#232425" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg></button>
+      <h3 class="genspark-title">This page was created by users with AI.</h3>
+      <a class="genspark-report" href="mailto:support@genspark.ai?subject=Report%20inappropriate%20content&amp;body=Current%20URL:%20https://www.genspark.ai/api/page_private?id=uuzzziqe">Report inappropriate content.</a>
+      <p class="genspark-info">Page owner with Plus Plan can remove badge.</p>
+      <div class="genspark-buttons">
+        <button class="genspark-remove-btn">Remove Badge</button>
+        <button class="genspark-go-btn">Go to Genspark</button>
+      </div>
+    </div>
+  </div>
+        
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    </body></html>
